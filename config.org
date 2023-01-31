@@ -1,0 +1,271 @@
+#+LATEX_HEADER: \usepackage[margin=18mm]{geometry}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \setlist{leftmargin=4mm}
+#+LATEX_HEADER: \setitemize{itemsep=-1mm}
+#+LATEX_HEADER: \titlespacing{\section} {0mm}{10mm}{5mm}
+#+LATEX_HEADER: \titlespacing*{\subsection} {0mm}{8mm}{3mm}
+#+OPTIONS: num:2
+
+* Légumes :noexport:
+:PROPERTIES:
+:ID: f063a506-a114-11ed-b503-d8cb8a7c0478
+:END:
+
+#+TBLNAME: plants
+| Plant                           | Espacement (cm) | Durée avant transplants (semaine) |
+|---------------------------------+-----------------+-----------------------------------|
+| Carotte                         |               1 |                                 0 |
+| Radis                           |               1 |                                 0 |
+| Mesclun                         |               1 |                                 0 |
+| Sugar Ann                       |               3 |                                 0 |
+| Super Sugar                     |               3 |                                 0 |
+| Laitue Buttercrunch             |              30 |                                 4 |
+| Laitue Grosse Blonde Paresseuse |              30 |                                 4 |
+| Laitue Romaine Rouge d'Hiver    |              30 |                                 4 |
+
+
+* Buttes :noexport:
+:PROPERTIES:
+:ID: 734d5eca-a114-11ed-b503-d8cb8a7c0478
+:END:
+
+#+TBLNAME: raised-beds
+| Butte | Longueur (m) | Longueur (cm) |
+|-------+--------------+---------------|
+| S1    |          5.5 |           550 |
+| S2    |          5.5 |           550 |
+| S3    |            6 |           600 |
+| S5    |          5.5 |           550 |
+| S6    |          5.5 |           550 |
+| S7    |            6 |           600 |
+| Kiwi  |         18.6 |          1860 |
+#+TBLFM: $3=$2*100;%.0f
+
+
+* Org Functions :noexport:
+
+#+BEGIN_SRC emacs-lisp :session :exports none
+  ;;  Copyright (C) 2023 Marc-Antoine Loignon
+
+  ;;  This program is free software; you can redistribute it and/or modify
+  ;;  it under the terms of the GNU General Public License as published by
+  ;;  the Free Software Foundation; either version 3, or (at your option)
+  ;;  any later version.
+
+  ;;  This program is distributed in the hope that it will be useful, but
+  ;;  WITHOUT ANY WARRANTY; without even the implied warranty of
+  ;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+
+  ;;  General Public License for more details.
+  ;;  You should have received a copy of the GNU General Public License
+  ;;  along with this program see the file LICENSE. If not see
+  ;;  <http://www.gnu.org/licenses/>.
+
+  (setq org-latex-tables-centered nil)
+
+  (defvar tables-id
+    '(("plants" . "f063a506-a114-11ed-b503-d8cb8a7c0478")
+      ("raised-beds" . "734d5eca-a114-11ed-b503-d8cb8a7c0478"))
+    "Tables reference id to make them usable in all files.")
+
+  (defun remote-range (column)
+    "Returns formatted remote range for `remote-value-by-reference'."
+    (format "@2$%s..@>$%s" column column))
+
+  (defun remote-value-by-reference (&rest args)
+    "Lookups table and returns remote value by given ARGS."
+    (let* ((reference (plist-get args :reference))
+           (reference-range (remote-range (plist-get args :table-reference-column)))
+           (return-range (remote-range (plist-get args :table-return-column)))
+           (table-name (plist-get args :table-name))
+           (table-return-column (plist-get args :table-column-return))
+           (table-id (cdr (assoc table-name tables-id))))
+      (org-lookup-first
+       reference
+       (org-table-get-remote-range table-id reference-range)
+       (org-table-get-remote-range table-id return-range))))
+
+  (defun raised-bed-width (raised-bed)
+    "Returns raised bed width."
+    (remote-value-by-reference
+     :reference raised-bed
+     :table-name "raised-beds"
+     :table-reference-column "1"
+     :table-return-column "3"))
+
+  (defun raised-bed-quantity (raised-bed space row)
+    "Returns quantity by raised bed width."
+    (let ((width (string-to-number (raised-bed-width raised-bed)))
+          (space (string-to-number space))
+          (row (string-to-number row)))
+      (* (/ width space) row)))
+
+  (defun plant-space (plant)
+    "Returns plant space between each other."
+    (remote-value-by-reference
+     :reference plant
+     :table-name "plants"
+     :table-reference-column "1"
+     :table-return-column "2"))
+
+  (defun plant-week-before-transplant (plant)
+    "Returns week before transplant."
+    (remote-value-by-reference
+     :reference plant
+     :table-name "plants"
+     :table-reference-column "1"
+     :table-return-column "3"))
+
+
+  ;;; Org element:
+
+  (defun element-parents (element index)
+    "Returns parents element by index."
+    (dotimes (number index)
+      (setq element (org-element-property :parent element)))
+    element)
+
+  (defun element-subsection (element)
+    "Returns headline subsection by given table."
+    (org-element-property :raw-value (element-parents element 2)))
+
+  (defun element-section (element)
+    "Returns headline section by given table."
+    (org-element-property :raw-value (element-parents element 3)))
+
+  (defun element-format-table (element section row-func)
+    "Returns table formatted."
+    (let ((new-content (list section "hline"))
+          (header)
+          (header-found-p)
+          (content (org-table-to-lisp (org-element-interpret-data element))))
+      (dolist (row content)
+        (when (not header-found-p)
+          (setq header-found-p t)
+          (setq header row))
+        (when (and (listp row)
+                   (not (equal header row)))
+          (add-to-list 'new-content row t)))
+      new-content))
+
+  (defun element-table (subsection-expected row-func)
+    "Fetchs and return tables located in file."
+    (org-element-map (org-element-parse-buffer) 'table
+      (lambda (element)
+        (let ((subsection (element-subsection element))
+              (section (element-section element)))
+          (when (string= subsection subsection-expected)
+            (element-format-table element section row-func))))))
+
+  (defun element-sowing-tables ()
+    "Returns spaced tables content."
+    (element-table "Espacement"
+     (lambda (row)
+       (add-to-list 'row (plant-week-before-transplant (nth 1 row)) t)
+       row)))
+#+END_SRC
+
+#+RESULTS:
+: element-sowing-tables
+
+#+BEGIN_SRC python :session :exports none :var content=tables :python python3.8
+  def get_months_with_variations():
+      """
+      Gets months with its possible variations.
+      """
+      months_with_variations = []
+      months = [
+          "Janvier",
+          "Février",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Juillet",
+          "Août",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Décembre"
+      ]
+
+      for month in months:
+         for variation in ["Début ", "Mi-", "", "Fin "]:
+             months_with_variations.append(variation + month)
+
+      return months_with_variations
+
+  def get_transplant_date(section):
+      """
+      Gets months located on given section.
+      """
+      section = section.strip()
+      section = section.lower()
+
+      for month in months:
+          month_lowercase = month.lower()
+          if section.endswith(month_lowercase):
+             return month
+
+  def get_sowing_date(transplant_date, week_before_transplant):
+      """
+      Gets months after subtract number of week.
+      """
+      index = months.index(transplant_date)
+      sowing_index = index - week_before_transplant
+      return months[sowing_index]
+
+  def get_tables_formatted(content):
+      """
+      Gets tables content formatted.
+      """
+      tables_formatted = []
+      for table in content:
+          section = None
+          is_section_found = False
+
+          for row in table:
+              if not is_section_found:
+                  section = row
+                  transplant_date = get_transplant_date(section)
+                  is_section_found = True
+
+              if row != section and row != "hline":
+                 tables_formatted.append([ row[0], row[1], row[4], transplant_date ])
+
+      return tables_formatted
+
+  def get_tables_rows_by_date(tables, column_use_as_date):
+      """
+      Gets tables rows formatted by date.
+      """
+      formatted_tables = {}
+      for month in months:
+          formatted_tables[month] = []
+
+      for row in tables:
+          date = row[column_use_as_date].lower()
+          if date not in formatted_tables:
+              formatted_tables[date] = []
+          formatted_tables[date].append(row)
+
+      return formatted_tables
+
+  def sort_tables_by_date(tables, column_use_as_date):
+      """
+      Fetchs and returns tables formatted by date.
+      """
+      sorted_tables = []
+      formatted_tables = get_tables_rows_by_date(tables, column_use_as_date)
+
+      for date in formatted_tables:
+          rows = formatted_tables[date]
+          sorted_tables.extend(rows)
+          if len(rows) > 0:
+              sorted_tables.append(None)
+
+      return sorted_tables
+
+  months = get_months_with_variations()
+#+END_SRC

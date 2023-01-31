@@ -1,0 +1,216 @@
+#+INCLUDE: "./config.org"
+
+* Nouvelle serre - Butte (S1, S2)  
+
+** Butte de Sugar Anne et de salades - Mi-février
+
+- Ajouter 2-3 cm de fumier sur la butte.
+- Incorporer les copeaux de bois.
+  
+*** Espacement
+
+| Butte | Plant                           | Espacement (cm) | Rang | Quantité |
+|-------+---------------------------------+-----------------+------+----------|
+| S1    | Laitue Buttercrunch             |              30 |    2 |       36 |
+| S1    | Laitue Grosse Blonde Paresseuse |              30 |    2 |       36 |
+| S1    | Sugar Ann                       |               4 |    1 |      137 |
+|-------+---------------------------------+-----------------+------+----------|
+| S1    | Laitue Buttercrunch             |              30 |    2 |       36 |
+| S1    | Laitue Grosse Blonde Paresseuse |              30 |    2 |       36 |
+| S1    | Sugar Ann                       |               4 |    1 |      137 |
+#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de Tomate - Fin avril
+
+- Apporter 10 à 15 cm de fumier sur la butte.
+- Une des deux buttes va être associé avec du basilic ou persil (Page 483 de Vivre avec la terre)
+- L'autre butte va être associé avec des salades (Page 484 de Vivre avec la terre)
+- Lorsque les tomates vont avoir 3 semaines restantes avant d'arriver
+  à maturité, on va ajouter des salades pour faire une rotation
+  rapide.
+
+*** Associations  
+  
+| Butte | Culture principale     | Association     |
+|-------+------------------------+-----------------|
+| B1    | Tomate cerises         | Basilic         |
+| B2    | Tomate de conservation | Persil et shiso |
+
+
+** Butte d'épinard et oignons - Mi-septembre
+
+- Incorporer les copeaux, mettre les résidus de culture entre les rangs et mettre les arceaux
+- Mettre 3-4 rang d'épinard sur les buttes. (À vérifier si 4, c'est trop espacé ou non)
+- Cette année l'espacement entre les plants étaient trop gros. Il faut les rapprocher.
+- Les oignons vont pouvoir être récolter comme oignons verts durant l'hiver.
+
+  
+* Nouvelle serre - Butte (S3)
+
+** Butte de mesclun - Mi-février
+
+- Ajouter 2-3 cm de fumier sur la butte.
+- Incorporer les copeaux de bois.
+
+*** Espacement
+
+| Butte | Plant   | Espacement (cm) | Rang | Quantité |
+|-------+---------+-----------------+------+----------|
+| S3    | Mesclun |               1 |    6 |     3600 |
+#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de concombre et de chou nappa - 25 mars
+
+- Pour plus d'information concernant la taille, aller voir la page 169
+  du jardiner maraicher.
+
+** Butte de concombre et de chou nappa - 10 juillet
+
+- Ajouter 2 cm de fumier et de la paille.
+  
+** Butte de mesclun - Mi-septembre
+
+- Incorporer les copeaux, mettre les résidus de culture entre les rangs et mettre les arceaux.
+- Mettre 3 rangs de mescluns.
+
+  
+* Ancienne serre - Butte (S5, S6)
+
+** Butte d'épinards - Maintenant
+
+- Ajouter aucune fertilité.
+- Laisser les épinards jusqu'à mi-mars.
+
+** Butte de Sugar Anne, carotte et radis - Mi-février
+
+- Incorporer les copeaux de bois.
+- Association pois, carotte et radis. (Page 480 de Vivre avec la terre)
+- Les pois doivent être centré et les rangs les plus près du plant doivent être des radis.
+- 12 rangs faits avec le semoir d'Éliot Colman.
+
+*** Espacement
+
+| Butte | Plant     | Espacement (cm) | Rang | Quantité |
+|-------+-----------+-----------------+------+----------|
+| S5    | Sugar Ann |               4 |    1 |      137 |
+| S5    | Carotte   |               1 |    6 |     3300 |
+| S5    | Radis     |               1 |    6 |     3300 |
+|-------+-----------+-----------------+------+----------|
+| S6    | Sugar Ann |               4 |    1 |      137 |
+| S6    | Carotte   |               1 |    6 |     3300 |
+| S6    | Radis     |               1 |    6 |     3300 |
+#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de piments et cerise de terre  (B5) - Début mai
+
+- Ajouter 5 cm de fumier.
+
+** Butte de piments et chou nappa (B6) - Début mai
+
+- Ajouter 5 cm de fumier.
+
+** Butte de mesclun (B5) - Mi-septembre
+
+- Ajouter aucune fertilité
+
+** Butte d'épinards (B6) - Mi-septembre
+
+- Ajouter aucune fertilité
+
+
+* Ancienne serre - Butte (S7)
+
+** Butte de mesclun - Maintenant
+
+- Ajouter aucune fertilité.
+- Laisser le mesclun jusqu'à début février.
+
+** Butte de salades - Mi-février
+
+- Ajouter aucune fertilité.
+- Récolte en début mai.
+
+*** Espacement
+
+| Butte | Plant                           | Espacement (cm) | Rang | Quantité |
+|-------+---------------------------------+-----------------+------+----------|
+| S7    | Laitue Buttercrunch             |              30 |    1 |       20 |
+| S7    | Laitue Grosse Blonde Paresseuse |              30 |    1 |       20 |
+#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de haricot à rames et haricot nain - Mai
+
+- Ajouter de 3-4 cm de fumier.
+
+** Butte de carottes - Début août
+
+- Incorporer les copeaux de bois.
+
+* Butte de kiwis  
+
+** Butte de kiwis, de Super Sugar Snap et de laitue buttercrunch - Mi-avril
+
+- Ne surtout pas incorporer les copeaux. Ce n'est pas du BRF et il reste d'avoir une faim d'azote. 
+- Ajouter 5 cm de fumier sur la butte (les kiwis en ont besoins de beaucoup)
+- Mettre les sugar snap du côté sud.
+- Mettre les salades du côté Nord.
+  
+*** Espacement
+
+| Butte | Plant               | Espacement (cm) | Rang | Quantité |
+|-------+---------------------+-----------------+------+----------|
+| Kiwi  | Laitue Buttercrunch |              30 |    2 |      124 |
+| Kiwi  | Super Sugar         |               3 |    1 |      620 |
+#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+*** Production de semences
+
+| Plant               | Production minimum       | Nombre de plant minimum | Distance d'isolement |
+|---------------------+--------------------------+-------------------------+----------------------|
+| Laitue buttercrunch | 20 plants                |                      20 | 8 m                  |
+| Super Sugar         | Idéalement 2000 semences |                      40 | 12 m                 |
+
+** Butte de kiwis et de Grosse Blonde Paresseuse - Début septembre
+
+- Incorporer les copeaux et mettre du nouveau BRF.
+- Ajouter 1 cm de fumier sur le rang de salades.
+- Repiquer les salades pour hivernation (récolte de printemps)
+
+*** Espacement
+
+| Butte | Plant                           | Espacement (cm) | Rang | Quantité |
+|-------+---------------------------------+-----------------+------+----------|
+| Kiwi  | Laitue Grosse Blonde Paresseuse |              30 |    2 |      124 |
+#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+* Planification
+
+#+NAME: tables
+#+BEGIN_SRC emacs-lisp :exports none
+  (element-sowing-tables)
+#+END_SRC
+
+*** Semis
+#+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
+  header = ["Butte", "Plant", "Quantité", "Transplation"]
+  table = get_tables_formatted(content)
+  table = sort_tables_by_date(table, 3)
+
+  table.insert(0, header)
+  table.insert(1, None)
+
+  table
+#+END_SRC
+
+*** Transplation 
+
+#+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
+  header = ["Butte", "Plant", "Quantité", "Transplation"]
+  table = get_tables_formatted(content)
+  table = sort_tables_by_date(table, 3)
+
+  table.insert(0, header)
+  table.insert(1, None)
+
+  table
+#+END_SRC
