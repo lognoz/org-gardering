@@ -2,7 +2,7 @@
 
 * Nouvelle serre — Butte (S1, S2)  
 
-** Butte de Sugar Anne et de salades — 2e semaine de février
+** Butte de Sugar Anne et de salades —  2e semaine de février
 
 - Ajouter 2-3 cm de fumier sur la butte.
 - Incorporer les copeaux de bois.
@@ -15,9 +15,9 @@
 | S1    | Laitue Grosse Blonde Paresseuse |              30 |    2 |       36 |
 | S1    | Pois mange-tout Sugar Ann       |               3 |    1 |      183 |
 |-------+---------------------------------+-----------------+------+----------|
-| S1    | Laitue Buttercrunch             |              30 |    2 |       36 |
-| S1    | Laitue Romaine Rouge d'Hiver    |              30 |    2 |       36 |
-| S1    | Pois mange-tout Sugar Ann       |               3 |    1 |      183 |
+| S2    | Laitue Buttercrunch             |              30 |    2 |       36 |
+| S2    | Laitue Romaine Rouge d'Hiver    |              30 |    2 |       36 |
+| S2    | Pois mange-tout Sugar Ann       |               3 |    1 |      183 |
 #+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
 ** Butte de Tomate — 4e semaine d'avril
@@ -318,45 +318,112 @@
 
 * Planification
 
-#+NAME: tables
+#+NAME: planning-section-tables
 #+BEGIN_SRC emacs-lisp :exports none
-  (element-sowing-tables)
+(element-table "Espacement")
 #+END_SRC
 
+#+RESULTS: planning-section-tables
+| Butte de Sugar Anne et de salades —  2e semaine de février                         | hline | (S1 Laitue Buttercrunch 30 2 36)                | (S1 Laitue Grosse Blonde Paresseuse 30 2 36) | (S1 Pois mange-tout Sugar Ann 3 1 183) | (S2 Laitue Buttercrunch 30 2 36)       | (S2 Laitue Romaine Rouge d'Hiver 30 2 36) | (S2 Pois mange-tout Sugar Ann 3 1 183) |
+| Butte de mesclun — 2e semaine de février                                           | hline | (S3 Mesclun Allstar 2 6 1800)                   |                                              |                                        |                                        |                                           |                                        |
+| Butte de concombre et de chou nappa — 3e semaine de mars                           | hline | (S3 Concombre H-19 Little Leaf 30 1 20)         | (S3 Chou nappa Wong Bok 30 1 20)             |                                        |                                        |                                           |                                        |
+| *À vérifier:* Butte de mesclun — 2e semaine de septembre                             | hline | (S3 Mesclun Allstar 2 6 1800)                   |                                              |                                        |                                        |                                           |                                        |
+| Butte de Sugar Anne, carotte et radis — 2e semaine de février                      | hline | (S5 Pois mange-tout Sugar Ann 3 1 183)          | (S5 Carotte Scarlet Nantes 2 6 1650)         | (S5 Radis French Breakfast 2 6 1650)   | (S6 Pois mange-tout Sugar Ann 3 1 183) | (S6 Carotte Scarlet Nantes 2 6 1650)      | (S6 Radis French Breakfast 2 6 1650)   |
+| Butte de piments et cerise de terre (S5) — 1ère semaine de mai                     | hline | (S5 Cerise de terre 45 1 12)                    | (S5 Piment Chili 30 2 36)                    |                                        |                                        |                                           |                                        |
+| Butte de piments et chou nappa (S6) — 1ère semaine de mai                          | hline | (S5 Chou nappa Wong Bok 30 1 18)                | (S5 Poivron Sweet Chocolate 30 2 36)         |                                        |                                        |                                           |                                        |
+| Butte de mesclun (S5) — 2e semaine de septembre                                    | hline | (S5 Mesclun Allstar 2 6 1800)                   |                                              |                                        |                                        |                                           |                                        |
+| Butte d'épinards (S6) — 2e semaine de septembre                                    | hline | (S6 Épinard Bloomsdale Savoy 15 4 144)          |                                              |                                        |                                        |                                           |                                        |
+| Butte de salades — 2e semaine de février                                           | hline | (S7 Laitue Buttercrunch 30 1 20)                | (S7 Laitue Grosse Blonde Paresseuse 30 1 20) |                                        |                                        |                                           |                                        |
+| Butte de carottes — 1ère semaine d'août                                            | hline | (S7 Carotte Scarlet Nantes 2 3 900)             | (S7 Radis French Breakfast 2 3 900)          |                                        |                                        |                                           |                                        |
+| Butte de Phacélie — 3e semaine d'avril                                             | hline | (VN Phacélie 2 6 5466)                          |                                              |                                        |                                        |                                           |                                        |
+| Butte de rutabaga — 1ère semaine d'août                                            | hline | (VN Rutabaga Joan 3 1 707)                      |                                              |                                        |                                        |                                           |                                        |
+| Butte de haricot — 2e semaine d'avril                                              | hline | (VO Haricot Provider 3 1 607)                   |                                              |                                        |                                        |                                           |                                        |
+| Butte de chou-fleur — 1ère semaine d'août                                          | hline | (VO Chou-fleur Walcheren Winter 45 1 40)        |                                              |                                        |                                        |                                           |                                        |
+| Butte de fraisier — 1ère semaine de mai                                            | hline | (FR Fraisier 20 2 94)                           |                                              |                                        |                                        |                                           |                                        |
+| Butte de fraisier et d'échalote de Sainte-Anne — 3e semaine de juillet             | hline | (FR Échalote de Sainte-Anne 15 2 126)           |                                              |                                        |                                        |                                           |                                        |
+| Butte de kiwis, de Super Sugar Snap et de laitue buttercrunch — 2e semaine d'avril | hline | (Kiwi Laitue Buttercrunch 30 2 124)             | (Kiwi Pois mange-tout Super Sugar 3 1 620)   |                                        |                                        |                                           |                                        |
+| Butte de kiwis et de Grosse Blonde Paresseuse — 1ère semaine de septembre          | hline | (Kiwi Laitue Grosse Blonde Paresseuse 30 2 124) |                                              |                                        |                                        |                                           |                                        |
+
 *** Semis
-#+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
-  get_sowing_planning_table(content)
+#+BEGIN_SRC python :session :var content=planning-section-tables varieties=config.org:varieties :exports results :python python3.8
+sowing_planning_table(content, varieties)
 #+END_SRC
+
+#+RESULTS:
+| Butte | Plant                           | Quantité | Semis (+40%) | Date de semis           |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| S1    | Laitue Buttercrunch             |       36 |           50 | 2e semaine de janvier   |
+| S1    | Laitue Grosse Blonde Paresseuse |       36 |           50 | 2e semaine de janvier   |
+| S2    | Laitue Buttercrunch             |       36 |           50 | 2e semaine de janvier   |
+| S2    | Laitue Romaine Rouge d'Hiver    |       36 |           50 | 2e semaine de janvier   |
+| S7    | Laitue Buttercrunch             |       20 |           28 | 2e semaine de janvier   |
+| S7    | Laitue Grosse Blonde Paresseuse |       20 |           28 | 2e semaine de janvier   |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| S3    | Chou nappa Wong Bok             |       20 |           28 | 3e semaine de février   |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| S3    | Concombre H-19 Little Leaf      |       20 |           28 | 4e semaine de février   |
+| S5    | Piment Chili                    |       36 |           50 | 4e semaine de février   |
+| S5    | Poivron Sweet Chocolate         |       36 |           50 | 4e semaine de février   |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| S5    | Cerise de terre                 |       12 |           17 | 1ère semaine de mars    |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| Kiwi  | Laitue Buttercrunch             |      124 |          174 | 2e semaine de mars      |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| S5    | Chou nappa Wong Bok             |       18 |           25 | 1ère semaine d'avril    |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| VO    | Chou-fleur Walcheren Winter     |       40 |           56 | 1ère semaine de juillet |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| Kiwi  | Laitue Grosse Blonde Paresseuse |      124 |          174 | 1ère semaine d'août     |
+|-------+---------------------------------+----------+--------------+-------------------------|
+| S6    | Épinard Bloomsdale Savoy        |      144 |          202 | 2e semaine d'août       |
+|-------+---------------------------------+----------+--------------+-------------------------|
 
 *** Transplation 
 
-#+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
-  get_transplanting_planning_table(content)
+#+BEGIN_SRC python :session :var content=planning-section-tables :exports results :python python3.8
+transplanting_planning_table(content)
 #+END_SRC
+
+#+RESULTS:
 
 *** Semences à commander
 
-#+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
-  get_seeds_buying_planning_table(content)
+#+BEGIN_SRC python :session :var content=planning-section-tables suppliers=config.org:suppliers varieties=config.org:varieties :exports results :python python3.8
+seeds_buying_planning_table(content, varieties, suppliers)
 #+END_SRC
+
+#+RESULTS:
+| Plant                           | Quantité minimum | Fournisseur           |
+|---------------------------------+------------------+-----------------------|
+| [[https://www.westcoastseeds.com/pages/search-results-1?q=Buttercrunch][Laitue Buttercrunch]]             |              302 | West coast seeds      |
+| [[https://www.westcoastseeds.com/pages/search-results-1?q=Scarlet Nantes][Carotte Scarlet Nantes]]          |             4200 | West coast seeds      |
+| [[https://www.westcoastseeds.com/pages/search-results-1?q=French Breakfast][Radis French Breakfast]]          |             4200 | West coast seeds      |
+| [[https://www.westcoastseeds.com/pages/search-results-1?q=Bloomsdale Savoy][Épinard Bloomsdale Savoy]]        |              202 | West coast seeds      |
+| [[https://www.westcoastseeds.com/pages/search-results-1?q=Walcheren Winter][Chou-fleur Walcheren Winter]]     |               56 | West coast seeds      |
+| [[https://www.westcoastseeds.com/pages/search-results-1?q=Super Sugar][Pois mange-tout Super Sugar]]     |              620 | West coast seeds      |
+|---------------------------------+------------------+-----------------------|
+| [[https://www.ecoumene.com/?s=Grosse Blonde Paresseuse&post_type=product][Laitue Grosse Blonde Paresseuse]] |              252 | Jardins de l'écoumène |
+| [[https://www.ecoumene.com/?s=Romaine Rouge d'Hiver&post_type=product][Laitue Romaine Rouge d'Hiver]]    |               50 | Jardins de l'écoumène |
+| [[https://www.ecoumene.com/?s=Phacélie&post_type=product][Phacélie]]                        |             5466 | Jardins de l'écoumène |
+| [[https://www.ecoumene.com/?s=Échalote de Sainte-Anne&post_type=product][Échalote de Sainte-Anne]]         |              126 | Jardins de l'écoumène |
+|---------------------------------+------------------+-----------------------|
+| [[https://www.johnnyseeds.com/search/?q=Sugar Ann&search-button=&lang=en_US][Pois mange-tout Sugar Ann]]       |              732 | Johnny's seeds        |
+| [[https://www.johnnyseeds.com/search/?q=Allstar&search-button=&lang=en_US][Mesclun Allstar]]                 |             5400 | Johnny's seeds        |
+| [[https://www.johnnyseeds.com/search/?q=H-19 Little Leaf&search-button=&lang=en_US][Concombre H-19 Little Leaf]]      |               28 | Johnny's seeds        |
+| [[https://www.johnnyseeds.com/search/?q=Provider&search-button=&lang=en_US][Haricot Provider]]                |              607 | Johnny's seeds        |
+|---------------------------------+------------------+-----------------------|
+| [[https://gaiaorganics.ca/?s=Wong Bok&post_type=product][Chou nappa Wong Bok]]             |               53 | Gaia Organics         |
+| [[https://gaiaorganics.ca/?s=Chili&post_type=product][Piment Chili]]                    |               50 | Gaia Organics         |
+|---------------------------------+------------------+-----------------------|
+| [[https://www.lasocietedesplantes.com/?s=Cerise de terre][Cerise de terre]]                 |               17 | Société des plantes   |
+| [[https://www.lasocietedesplantes.com/?s=Sweet Chocolate][Poivron Sweet Chocolate]]         |               50 | Société des plantes   |
+| [[https://www.lasocietedesplantes.com/?s=Joan][Rutabaga Joan]]                   |              707 | Société des plantes   |
+|---------------------------------+------------------+-----------------------|
+| [[https://www.pepiniereancestrale.com/recherche?search_query=Fraisier][Fraisier]]                        |               94 | Pépinière ancestrale  |
+|---------------------------------+------------------+-----------------------|
 
 *** À completer
 
 #+BEGIN_SRC emacs-lisp :results list :exports results
-  (require 'seq)
-
-  (defun get-sections ()
-    (org-element-map (org-element-parse-buffer) 'headline
-      (lambda (element)
-        (when (= (org-element-property :level element) 2)
-          (org-element-property :raw-value element)))))
-
-  (defun get-completed-sections ()
-    (org-element-map (org-element-parse-buffer) 'headline
-      (lambda (element)
-        (when (and (= (org-element-property :level element) 3)
-                   (string= (org-element-property :raw-value element) "Espacement"))
-          (org-element-property :raw-value (org-element-property :parent element))))))
-
-  (seq-difference (get-sections) (get-completed-sections))
+(seq-difference (element-section) (element-user-completed-section))
 #+END_SRC

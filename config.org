@@ -8,6 +8,18 @@
 #+LATEX_HEADER: \renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
 #+OPTIONS: num:2
 
+* Fournisseur :noexport:
+
+#+TBLNAME: suppliers
+| Fournisseur           | Recherche                                                          |
+|-----------------------+--------------------------------------------------------------------|
+| West coast seeds      | https://www.westcoastseeds.com/pages/search-results-1?q={}         |
+| Jardins de l'écoumène | https://www.ecoumene.com/?s={}&post_type=product                   |
+| Johnny's seeds        | https://www.johnnyseeds.com/search/?q={}&search-button=&lang=en_US |
+| Gaia Organics         | https://gaiaorganics.ca/?s={}&post_type=product                    |
+| Société des plantes   | https://www.lasocietedesplantes.com/?s={}                          |
+| Pépinière ancestrale  | https://www.pepiniereancestrale.com/recherche?search_query={}      |
+
 * Plants :noexport:
 :PROPERTIES:
 :ID: f063a506-a114-11ed-b503-d8cb8a7c0478
@@ -86,7 +98,7 @@
 
 * Org Functions :noexport:
 
-#+BEGIN_SRC emacs-lisp :session :exports none :cache yes
+#+BEGIN_SRC emacs-lisp :session :exports none
   ;;  Copyright (C) 2023 Marc-Antoine Loignon
 
   ;;  This program is free software; you can redistribute it and/or modify
@@ -103,13 +115,22 @@
   ;;  along with this program see the file LICENSE. If not see
   ;;  <http://www.gnu.org/licenses/>.
 
-  (setq org-latex-tables-centered nil)
+  (require 'seq)
+
+
+  ;;; Variables:
 
   (defvar tables-id
     '(("plants" . "f063a506-a114-11ed-b503-d8cb8a7c0478")
       ("varieties" . "b2f650a4-a264-11ed-b503-d8cb8a7c0478")
       ("raised-beds" . "734d5eca-a114-11ed-b503-d8cb8a7c0478"))
     "Tables reference id to make them usable in all files.")
+
+  (defvar cached-request nil
+    "Requests cached content.")
+
+
+  ;;; Remote functions:
 
   (defun remote-range (column)
     "Returns formatted remote range for `remote-value-by-reference'."
@@ -184,21 +205,21 @@
 
   ;;; Org element:
 
-  (defun element-parents (element index)
+  (defun element--parents (element index)
     "Returns parents element by index."
     (dotimes (number index)
       (setq element (org-element-property :parent element)))
     element)
 
-  (defun element-subsection (element)
+  (defun element-table--parent-subsection (element)
     "Returns headline subsection by given table."
-    (org-element-property :raw-value (element-parents element 2)))
+    (org-element-property :raw-value (element--parents element 2)))
 
-  (defun element-section (element)
+  (defun element-table--parent-section (element)
     "Returns headline section by given table."
-    (org-element-property :raw-value (element-parents element 3)))
+    (org-element-property :raw-value (element--parents element 3)))
 
-  (defun element-format-table (element section row-func)
+  (defun element-table--format (element section)
     "Returns table formatted."
     (let ((new-content (list section "hline"))
           (header)
@@ -210,38 +231,50 @@
           (setq header row))
         (when (and (listp row)
                    (not (equal header row)))
-          (setq row (funcall row-func row))
           (add-to-list 'new-content row t)))
       new-content))
 
-  (defun element-table (subsection-expected row-func)
+  (defun element-table (subsection-expected)
     "Fetchs and return tables located in file."
-    (org-element-map (org-element-parse-buffer) 'table
+    (let ((cached-content (assoc subsection-expected cached-request)))
+      (when (not cached-content)
+        (setq cached-content
+              (org-element-map (org-element-parse-buffer) 'table
+                (lambda (element)
+                  (let ((subsection (element-table--parent-subsection element))
+                        (section (element-table--parent-section element)))
+                    (when (string= subsection subsection-expected)
+                      (element-table--format element section))))))
+        (setf (alist-get subsection-expected cached-request) cached-content))
+      (cdr (assoc subsection-expected cached-request))))
+
+  (defun element-section ()
+    "Returns all section located in file."
+    (org-element-map (org-element-parse-buffer) 'headline
       (lambda (element)
-        (let ((subsection (element-subsection element))
-              (section (element-section element)))
-          (when (string= subsection subsection-expected)
-            (element-format-table element section row-func))))))
+        (when (= (org-element-property :level element) 2)
+          (org-element-property :raw-value element)))))
+
+  (defun element-user-completed-section ()
+    "Returns all section that have been completed."
+    (org-element-map (org-element-parse-buffer) 'headline
+      (lambda (element)
+        (when (and (= (org-element-property :level element) 3)
+                   (string= (org-element-property :raw-value element) "Espacement"))
+          (org-element-property :raw-value (org-element-property :parent element))))))
 
 
-  (setq sowing-tables-results nil)
+  ;;; Export variables:
 
-  (defun element-sowing-tables ()
-    "Returns spaced tables content."
-    (when (not sowing-tables-results)
-      (setq sowing-tables-results
-            (element-table "Espacement"
-              (lambda (row)
-                (setq row (append row (list (variety-week-before-transplant (nth 1 row)))))
-                row))))
-    sowing-tables-results)
+  (setq org-latex-tables-centered nil)
+
+  (setq cached-request nil)
 #+END_SRC
 
-#+RESULTS[d82df70b8b51f663a40250c75bdd99249651f49c]:
-: element-sowing-tables
+#+RESULTS:
 
-#+BEGIN_SRC python :session :exports none :python python3.8 :cache yes
-  def get_months_with_variations():
+#+BEGIN_SRC python :session :exports none :python python3.8
+  def _get_months_with_variations():
       """
       Gets months with its possible variations.
       """
@@ -267,7 +300,7 @@
 
       return months_with_variations
 
-  def get_transplant_date(section):
+  def _get_transplant_date(section):
       """
       Gets months located on given section.
       """
@@ -281,7 +314,7 @@
 
       return "—"
 
-  def get_sowing_date(transplant_date, week_before_transplant):
+  def _get_sowing_date(transplant_date, week_before_transplant):
       """
       Gets months after subtract number of week.
       """
@@ -292,128 +325,205 @@
       except:
           return "—"
 
-  def get_tables_formatted(content):
-      """
-      Gets tables content formatted.
-      """
-      tables_formatted = []
-      for table in content:
-          section = None
+  def _get_table_by_content(content, header):
+      table = []
+
+      table.insert(0, header)
+      table.insert(1, None)
+
+      for section in content:
+          rows = content[section]
+          if type(rows) is dict:
+              rows = rows.values()
+
+          table.extend(rows)
+          if len(rows) > 0:
+              table.append(None)
+
+      return table
+
+  def _convert_list_to_object(keys, values):
+    dictionary = dict(zip(keys, values))
+    return type('new_dict', (object,), dictionary)
+
+  def _get_content_sorted_by_date(**kwargs):
+      # Filters content by date:
+      content_by_date = {}
+      for month in months: content_by_date[month] = []
+      for section_table in kwargs["content"]:
           is_section_found = False
 
-          for row in table:
+          for row in section_table:
               if not is_section_found:
-                  section = row
-                  transplant_date = get_transplant_date(section)
+                  section_title = row
+                  transplant_date = get_transplant_date(section_title)
                   is_section_found = True
 
-              if row != section and row != "hline":
-                  try:
-                      sowing_date = get_sowing_date(transplant_date, int(row[5]))
-                  except:
-                      print(row)
-                  tables_formatted.append([ row[0], row[1], row[4], transplant_date, sowing_date ])
+              if row != section_title and row != "hline":
+                  row.append(transplant_date)
+                  row = kwargs["content_hook"](_convert_list_to_object(content_columns, row))
 
-      return tables_formatted
+                  if not row:
+                      continue
 
-  def get_tables_rows_by_date(tables, column_use_as_date):
+                  date_column_value = row[kwargs["column"]]
+                  if date_column_value not in content_by_date:
+                      content_by_date[date_column_value] = []
+                  content_by_date[date_column_value].append(row)
+
+      # Renders table:
+      return _get_table_by_content(content_by_date, kwargs["header"])
+
+  def _get_variety(varieties, name):
       """
-      Gets tables rows formatted by date.
+      Gets a variety by name.
       """
-      formatted_tables = {}
-      for month in months:
-          formatted_tables[month] = []
+      for variety in varieties:
+          if variety[2] == name:
+              return _convert_list_to_object(variety_columns, variety)
 
-      for row in tables:
-          date = row[column_use_as_date].lower()
-          if date not in formatted_tables:
-              formatted_tables[date] = []
-          formatted_tables[date].append(row)
-
-      return formatted_tables
-
-  def sort_tables_by_date(tables, column_use_as_date):
+  def _get_supplier(suppliers, name):
       """
-      Fetchs and returns tables formatted by date.
+      Gets a variety by name.
       """
-      sorted_tables = []
-      formatted_tables = get_tables_rows_by_date(tables, column_use_as_date)
+      for supplier in suppliers:
+          if supplier[0] == name:
+              return _convert_list_to_object(supplier_columns, supplier)
 
-      for date in formatted_tables:
-          rows = formatted_tables[date]
-          sorted_tables.extend(rows)
-          if len(rows) > 0:
-              sorted_tables.append(None)
-
-      return sorted_tables
-
-  def get_transplanting_planning_table(content):
+  def transplanting_planning_table(content):
       """
       Gets transplanting planning table.
       """
-      table = []
       header = ["Butte", "Plant", "Quantité", "Date de transplation"]
+      return _get_content_sorted_by_date(
+          column=3,
+          content=content,
+          header=header,
+          content_hook=lambda content: [
+              content.reference,
+              content.plant,
+              content.quantity,
+              content.transplant_date
+          ]
+      )
 
-      for row in get_tables_formatted(content):
-          del row[4]
-          table.append(row)
-
-      table = sort_tables_by_date(table, 3)
-
-      table.insert(0, header)
-      table.insert(1, None)
-
-      return table
-
-  def get_sowing_planning_table(content):
+  def sowing_planning_table(content, varieties):
       """
-      Gets transplanting planning table.
+      Gets sowing planning table.
       """
-      table = []
+      def content_hook(content):
+          variety = _get_variety(varieties, content.plant)
+          sowing_date = _get_sowing_date(content.transplant_date, variety.week_before_transplant)
+          sowing_quantity = round(float(content.quantity) * 1.4)
+
+          if content.transplant_date == sowing_date and content.transplant_date != "—":
+              return
+
+          return [
+              content.reference,
+              content.plant,
+              content.quantity,
+              sowing_quantity,
+              sowing_date
+          ]
+
       header = ["Butte", "Plant", "Quantité", "Semis (+40%)", "Date de semis"]
+      return _get_content_sorted_by_date(
+          content_hook=content_hook,
+          content=content,
+          header=header,
+          column=4
+      )
 
-      for row in get_tables_formatted(content):
-          if row[3] == row[4] and row[3] != "—":
-              continue
-          row[3] = round(float(row[2]) * 1.4)
-          table.append(row)
+  def _get_content_sorted_by_column(**kwargs):
+      # Filters content by date:
+      content_by_column = {}
 
-      table = sort_tables_by_date(table, 4)
+      for section_table in kwargs["content"]:
+          is_section_found = False
 
-      table.insert(0, header)
-      table.insert(1, None)
+          for row in section_table:
+              if not is_section_found:
+                  section_title = row
+                  is_section_found = True
 
-      return table
+              if row != section_title and row != "hline":
+                  content_by_column = kwargs["content_hook"](
+                      _convert_list_to_object(content_columns, row),
+                      content_by_column
+                  )
 
-  def get_seeds_buying_planning_table(content):
-      """
-      Gets seeds buying planning table.
-      """
-      plants = {}
+      # Renders table:
+      return _get_table_by_content(content_by_column, kwargs["header"])
 
-      for row in get_tables_formatted(content):
-          name = row[1]
-          quantity = int(row[2])
-          if row[3] != row[4]:
-              quantity = quantity * 1.4
 
-          if name not in plants:
-              plants[name] = 0
+  def seeds_buying_planning_table(content, varieties, suppliers):
+      def content_hook(content, data):
+          variety = _get_variety(varieties, content.plant)
+          content.quantity = round(float(content.quantity))
 
-          plants[name] += round(quantity)
+          if variety.week_before_transplant:
+              content.quantity = round(content.quantity * 1.4)
 
-      table = []
-      header = ["Plant", "Quantité minimum"]
+          if variety.supplier not in data:
+              data[variety.supplier] = {}
 
-      for name in plants:
-          table.append([name, plants[name]])
+          if content.plant not in data[variety.supplier]:
+              supplier = _get_supplier(suppliers, variety.supplier)
+              try:
+                  if variety.variety:
+                      search_keyword = variety.variety
+                  else:
+                      search_keyword = variety.plant
+                  search = "[[%s][%s]]" % (
+                      supplier.search.format(search_keyword),
+                      content.plant
+                  )
+              except:
+                  search = content.plant
+              data[variety.supplier][content.plant] = [
+                  search,
+                  round(content.quantity),
+                  variety.supplier
+              ]
+          else:
+              quantity = data[variety.supplier][content.plant][1]
+              data[variety.supplier][content.plant][1] = round(quantity + content.quantity)
 
-      table.insert(0, header)
-      table.insert(1, None)
+          return data
 
-      return table
+      header = ["Plant", "Quantité minimum", "Fournisseur"]
+      return _get_content_sorted_by_column(
+          content_hook=content_hook,
+          content=content,
+          header=header,
+          column=2
+      )
 
-  months = get_months_with_variations()
+  supplier_columns = [
+      "supplier",
+      "search"
+  ]
+
+  content_columns = [
+      "reference",
+      "plant",
+      "space",
+      "row",
+      "quantity",
+      "transplant_date"
+  ]
+
+  variety_columns = [
+      "plant",
+      "variety",
+      "name",
+      "supplier",
+      "space",
+      "week_before_transplant"
+  ]
+
+  months = _get_months_with_variations()
 #+END_SRC
 
-#+RESULTS[e13e621d763c05e9667eae56d05a4ffd2ad63f2d]:
+#+RESULTS:
