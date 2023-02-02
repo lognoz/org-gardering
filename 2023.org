@@ -1,8 +1,8 @@
 #+INCLUDE: "./config.org"
 
-* Nouvelle serre - Butte (S1, S2)  
+* Nouvelle serre — Butte (S1, S2)  
 
-** Butte de Sugar Anne et de salades - Mi-février
+** Butte de Sugar Anne et de salades — 2e semaine de février
 
 - Ajouter 2-3 cm de fumier sur la butte.
 - Incorporer les copeaux de bois.
@@ -13,14 +13,14 @@
 |-------+---------------------------------+-----------------+------+----------|
 | S1    | Laitue Buttercrunch             |              30 |    2 |       36 |
 | S1    | Laitue Grosse Blonde Paresseuse |              30 |    2 |       36 |
-| S1    | Sugar Ann                       |               4 |    1 |      137 |
+| S1    | Pois mange-tout Sugar Ann       |               3 |    1 |      183 |
 |-------+---------------------------------+-----------------+------+----------|
 | S1    | Laitue Buttercrunch             |              30 |    2 |       36 |
-| S1    | Laitue Grosse Blonde Paresseuse |              30 |    2 |       36 |
-| S1    | Sugar Ann                       |               4 |    1 |      137 |
-#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+| S1    | Laitue Romaine Rouge d'Hiver    |              30 |    2 |       36 |
+| S1    | Pois mange-tout Sugar Ann       |               3 |    1 |      183 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
-** Butte de Tomate - Fin avril
+** Butte de Tomate — 4e semaine d'avril
 
 - Apporter 10 à 15 cm de fumier sur la butte.
 - Une des deux buttes va être associé avec du basilic ou persil (Page 483 de Vivre avec la terre)
@@ -37,51 +37,65 @@
 | B2    | Tomate de conservation | Persil et shiso |
 
 
-** Butte d'épinard et oignons - Mi-septembre
+** Butte d'épinard et oignons — 2e semaine de février
 
 - Incorporer les copeaux, mettre les résidus de culture entre les rangs et mettre les arceaux
 - Mettre 3-4 rang d'épinard sur les buttes. (À vérifier si 4, c'est trop espacé ou non)
 - Cette année l'espacement entre les plants étaient trop gros. Il faut les rapprocher.
 - Les oignons vont pouvoir être récolter comme oignons verts durant l'hiver.
-
   
-* Nouvelle serre - Butte (S3)
+* Nouvelle serre — Butte (S3)
 
-** Butte de mesclun - Mi-février
+** Butte de mesclun — 2e semaine de février
 
 - Ajouter 2-3 cm de fumier sur la butte.
 - Incorporer les copeaux de bois.
 
 *** Espacement
 
-| Butte | Plant   | Espacement (cm) | Rang | Quantité |
-|-------+---------+-----------------+------+----------|
-| S3    | Mesclun |               1 |    6 |     3600 |
-#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+| Butte | Plant           | Espacement (cm) | Rang | Quantité |
+|-------+-----------------+-----------------+------+----------|
+| S3    | Mesclun Allstar |               2 |    6 |     1800 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
-** Butte de concombre et de chou nappa - 25 mars
+** Butte de concombre et de chou nappa — 3e semaine de mars
 
 - Pour plus d'information concernant la taille, aller voir la page 169
   du jardiner maraicher.
+  
+*** Espacement
 
-** Butte de concombre et de chou nappa - 10 juillet
+| Butte | Plant                      | Espacement (cm) | Rang | Quantité |
+|-------+----------------------------+-----------------+------+----------|
+| S3    | Concombre H-19 Little Leaf |              30 |    1 |       20 |
+| S3    | Chou nappa Wong Bok        |              30 |    1 |       20 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** *À vérifier:* Butte de concombre et de chou nappa — 2e semaine de juillet
 
 - Ajouter 2 cm de fumier et de la paille.
   
-** Butte de mesclun - Mi-septembre
+** *À vérifier:* Butte de mesclun — 2e semaine de septembre
 
 - Incorporer les copeaux, mettre les résidus de culture entre les rangs et mettre les arceaux.
 - Mettre 3 rangs de mescluns.
 
-  
-* Ancienne serre - Butte (S5, S6)
+*** Espacement
 
-** Butte d'épinards - Maintenant
+| Butte | Plant           | Espacement (cm) | Rang | Quantité |
+|-------+-----------------+-----------------+------+----------|
+| S3    | Mesclun Allstar |               2 |    6 |     1800 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+  
+* Ancienne serre — Butte (S5, S6)
+
+** Butte d'épinards — Maintenant
 
 - Ajouter aucune fertilité.
 - Laisser les épinards jusqu'à mi-mars.
-
-** Butte de Sugar Anne, carotte et radis - Mi-février
+  
+** Butte de Sugar Anne, carotte et radis — 2e semaine de février
 
 - Incorporer les copeaux de bois.
 - Association pois, carotte et radis. (Page 480 de Vivre avec la terre)
@@ -90,42 +104,72 @@
 
 *** Espacement
 
-| Butte | Plant     | Espacement (cm) | Rang | Quantité |
-|-------+-----------+-----------------+------+----------|
-| S5    | Sugar Ann |               4 |    1 |      137 |
-| S5    | Carotte   |               1 |    6 |     3300 |
-| S5    | Radis     |               1 |    6 |     3300 |
-|-------+-----------+-----------------+------+----------|
-| S6    | Sugar Ann |               4 |    1 |      137 |
-| S6    | Carotte   |               1 |    6 |     3300 |
-| S6    | Radis     |               1 |    6 |     3300 |
-#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+| Butte | Plant                     | Espacement (cm) | Rang | Quantité |
+|-------+---------------------------+-----------------+------+----------|
+| S5    | Pois mange-tout Sugar Ann |               3 |    1 |      183 |
+| S5    | Carotte Scarlet Nantes    |               2 |    6 |     1650 |
+| S5    | Radis French Breakfast    |               2 |    6 |     1650 |
+|-------+---------------------------+-----------------+------+----------|
+| S6    | Pois mange-tout Sugar Ann |               3 |    1 |      183 |
+| S6    | Carotte Scarlet Nantes    |               2 |    6 |     1650 |
+| S6    | Radis French Breakfast    |               2 |    6 |     1650 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
-** Butte de piments et cerise de terre  (B5) - Début mai
-
-- Ajouter 5 cm de fumier.
-
-** Butte de piments et chou nappa (B6) - Début mai
+** Butte de piments et cerise de terre (S5) — 1ère semaine de mai
 
 - Ajouter 5 cm de fumier.
 
-** Butte de mesclun (B5) - Mi-septembre
+*** Espacement
+
+| Butte | Plant           | Espacement (cm) | Rang | Quantité |
+|-------+-----------------+-----------------+------+----------|
+| S5    | Cerise de terre |              45 |    1 |       12 |
+| S5    | Piment Chili    |              30 |    2 |       36 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de piments et chou nappa (S6) — 1ère semaine de mai
+
+- Ajouter 5 cm de fumier.
+
+*** Espacement
+
+| Butte | Plant                   | Espacement (cm) | Rang | Quantité |
+|-------+-------------------------+-----------------+------+----------|
+| S5    | Chou nappa Wong Bok     |              30 |    1 |       18 |
+| S5    | Poivron Sweet Chocolate |              30 |    2 |       36 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de mesclun (S5) — 2e semaine de septembre
 
 - Ajouter aucune fertilité
 
-** Butte d'épinards (B6) - Mi-septembre
+*** Espacement
+
+| Butte | Plant           | Espacement (cm) | Rang | Quantité |
+|-------+-----------------+-----------------+------+----------|
+| S5    | Mesclun Allstar |               2 |    6 |     1800 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte d'épinards (S6) — 2e semaine de septembre
 
 - Ajouter aucune fertilité
 
+*** Espacement
 
-* Ancienne serre - Butte (S7)
+| Butte | Plant                    | Espacement (cm) | Rang | Quantité |
+|-------+--------------------------+-----------------+------+----------|
+| S6    | Épinard Bloomsdale Savoy |              15 |    4 |      144 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
-** Butte de mesclun - Maintenant
+
+* Ancienne serre — Butte (S7)
+
+** Butte de mesclun — Maintenant
 
 - Ajouter aucune fertilité.
 - Laisser le mesclun jusqu'à début février.
 
-** Butte de salades - Mi-février
+** Butte de salades — 2e semaine de février
 
 - Ajouter aucune fertilité.
 - Récolte en début mai.
@@ -136,19 +180,107 @@
 |-------+---------------------------------+-----------------+------+----------|
 | S7    | Laitue Buttercrunch             |              30 |    1 |       20 |
 | S7    | Laitue Grosse Blonde Paresseuse |              30 |    1 |       20 |
-#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
-** Butte de haricot à rames et haricot nain - Mai
+** Butte de haricot à rames et haricot nain — 2e semaine d'avril
 
 - Ajouter de 3-4 cm de fumier.
 
-** Butte de carottes - Début août
+** Butte de carottes — 1ère semaine d'août
 
 - Incorporer les copeaux de bois.
 
+*** Espacement
+
+| Butte | Plant                  | Espacement (cm) | Rang | Quantité |
+|-------+------------------------+-----------------+------+----------|
+| S7    | Carotte Scarlet Nantes |               2 |    3 |      900 |
+| S7    | Radis French Breakfast |               2 |    3 |      900 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+* Coté nord des vignes — Butte (VN)
+
+** Butte de Phacélie — 3e semaine d'avril
+
+- Ajouter 5 cm de terre et 1 cm de fumier.
+  
+*** Espacement
+
+| Butte | Plant    | Espacement (cm) | Rang | Quantité |
+|-------+----------+-----------------+------+----------|
+| VN    | Phacélie |               2 |    6 |     5466 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de rutabaga — 1ère semaine d'août
+
+- Enfouir les Phacélies.
+- Ajouter 1 cm de fumier.
+  
+*** Espacement
+
+| Butte | Plant         | Espacement (cm) | Rang | Quantité |
+|-------+---------------+-----------------+------+----------|
+| VN    | Rutabaga Joan |               3 |    1 |      707 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+* Coté ouest des vignes — Butte (VO)
+
+** Butte de haricot — 2e semaine d'avril
+
+- Ne pas ajouter de fertilité
+- Ajouter 2-3 cm de BRF frais pour la fructification des champignons
+  
+*** Espacement
+
+| Butte | Plant            | Espacement (cm) | Rang | Quantité |
+|-------+------------------+-----------------+------+----------|
+| VO    | Haricot Provider |               3 |    1 |      607 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de chou-fleur — 1ère semaine d'août
+
+- Ajouter 2-3 cm de fumier avant la culture.
+
+*** Espacement
+
+| Butte | Plant                       | Espacement (cm) | Rang | Quantité |
+|-------+-----------------------------+-----------------+------+----------|
+| VO    | Chou-fleur Walcheren Winter |              45 |    1 |       40 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+  
+* Face aux ruches — Butte (FR)
+
+** Butte de fraisier — 1ère semaine de mai
+
+- Ajouter 10 cm de terre et 3 cm de fumier.
+- Laisser de l'espace pour pouvoir mettre les échalotes.
+- Ajouter 5 cm de paille.
+- Il serait intéressant d'inoculer des champignons pour faire une
+  polyculture.
+  
+*** Espacement
+
+| Butte | Plant    | Espacement (cm) | Rang | Quantité |
+|-------+----------+-----------------+------+----------|
+| FR    | Fraisier |              20 |    2 |       94 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+** Butte de fraisier et d'échalote de Sainte-Anne — 3e semaine de juillet
+
+- Ajouter 2-3 cm de fumier avant la culture.
+
+*** Espacement
+
+| Butte | Plant                   | Espacement (cm) | Rang | Quantité |
+|-------+-------------------------+-----------------+------+----------|
+| FR    | Échalote de Sainte-Anne |              15 |    2 |      126 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
+
 * Butte de kiwis  
 
-** Butte de kiwis, de Super Sugar Snap et de laitue buttercrunch - Mi-avril
+** Butte de kiwis, de Super Sugar Snap et de laitue buttercrunch — 2e semaine d'avril
 
 - Ne surtout pas incorporer les copeaux. Ce n'est pas du BRF et il reste d'avoir une faim d'azote. 
 - Ajouter 5 cm de fumier sur la butte (les kiwis en ont besoins de beaucoup)
@@ -157,20 +289,20 @@
   
 *** Espacement
 
-| Butte | Plant               | Espacement (cm) | Rang | Quantité |
-|-------+---------------------+-----------------+------+----------|
-| Kiwi  | Laitue Buttercrunch |              30 |    2 |      124 |
-| Kiwi  | Super Sugar         |               3 |    1 |      620 |
-#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+| Butte | Plant                       | Espacement (cm) | Rang | Quantité |
+|-------+-----------------------------+-----------------+------+----------|
+| Kiwi  | Laitue Buttercrunch         |              30 |    2 |      124 |
+| Kiwi  | Pois mange-tout Super Sugar |               3 |    1 |      620 |
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
 
 *** Production de semences
 
-| Plant               | Production minimum       | Nombre de plant minimum | Distance d'isolement |
-|---------------------+--------------------------+-------------------------+----------------------|
-| Laitue buttercrunch | 20 plants                |                      20 | 8 m                  |
-| Super Sugar         | Idéalement 2000 semences |                      40 | 12 m                 |
+| Plant                       | Production minimum | Nombre de plant minimum | Distance d'isolement |
+|-----------------------------+--------------------+-------------------------+----------------------|
+| Laitue buttercrunch         | 20 plants          |                      20 | 8 m                  |
+| Pois mange-tout Super Sugar | 2000 semences      |                      40 | 12 m                 |
 
-** Butte de kiwis et de Grosse Blonde Paresseuse - Début septembre
+** Butte de kiwis et de Grosse Blonde Paresseuse — 1ère semaine de septembre
 
 - Incorporer les copeaux et mettre du nouveau BRF.
 - Ajouter 1 cm de fumier sur le rang de salades.
@@ -181,7 +313,8 @@
 | Butte | Plant                           | Espacement (cm) | Rang | Quantité |
 |-------+---------------------------------+-----------------+------+----------|
 | Kiwi  | Laitue Grosse Blonde Paresseuse |              30 |    2 |      124 |
-#+TBLFM: $3='(plant-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+#+TBLFM: $3='(variety-space $2) :: $5='(raised-bed-quantity $1 $3 $4)
+
 
 * Planification
 
@@ -192,25 +325,38 @@
 
 *** Semis
 #+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
-  header = ["Butte", "Plant", "Quantité", "Transplation"]
-  table = get_tables_formatted(content)
-  table = sort_tables_by_date(table, 3)
-
-  table.insert(0, header)
-  table.insert(1, None)
-
-  table
+  get_sowing_planning_table(content)
 #+END_SRC
 
 *** Transplation 
 
 #+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
-  header = ["Butte", "Plant", "Quantité", "Transplation"]
-  table = get_tables_formatted(content)
-  table = sort_tables_by_date(table, 3)
+  get_transplanting_planning_table(content)
+#+END_SRC
 
-  table.insert(0, header)
-  table.insert(1, None)
+*** Semences à commander
 
-  table
+#+BEGIN_SRC python :session :var content=tables :exports results :python python3.8
+  get_seeds_buying_planning_table(content)
+#+END_SRC
+
+*** À completer
+
+#+BEGIN_SRC emacs-lisp :results list :exports results
+  (require 'seq)
+
+  (defun get-sections ()
+    (org-element-map (org-element-parse-buffer) 'headline
+      (lambda (element)
+        (when (= (org-element-property :level element) 2)
+          (org-element-property :raw-value element)))))
+
+  (defun get-completed-sections ()
+    (org-element-map (org-element-parse-buffer) 'headline
+      (lambda (element)
+        (when (and (= (org-element-property :level element) 3)
+                   (string= (org-element-property :raw-value element) "Espacement"))
+          (org-element-property :raw-value (org-element-property :parent element))))))
+
+  (seq-difference (get-sections) (get-completed-sections))
 #+END_SRC

@@ -5,25 +5,63 @@
 #+LATEX_HEADER: \setitemize{itemsep=-1mm}
 #+LATEX_HEADER: \titlespacing{\section} {0mm}{10mm}{5mm}
 #+LATEX_HEADER: \titlespacing*{\subsection} {0mm}{8mm}{3mm}
+#+LATEX_HEADER: \renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
 #+OPTIONS: num:2
 
-* Légumes :noexport:
+* Plants :noexport:
 :PROPERTIES:
 :ID: f063a506-a114-11ed-b503-d8cb8a7c0478
 :END:
 
 #+TBLNAME: plants
-| Plant                           | Espacement (cm) | Durée avant transplants (semaine) |
-|---------------------------------+-----------------+-----------------------------------|
-| Carotte                         |               1 |                                 0 |
-| Radis                           |               1 |                                 0 |
-| Mesclun                         |               1 |                                 0 |
-| Sugar Ann                       |               3 |                                 0 |
-| Super Sugar                     |               3 |                                 0 |
-| Laitue Buttercrunch             |              30 |                                 4 |
-| Laitue Grosse Blonde Paresseuse |              30 |                                 4 |
-| Laitue Romaine Rouge d'Hiver    |              30 |                                 4 |
+| Plante          | Espacement (cm) | Durée avant transplants (semaine) | Profondeur (cm) | Éclaircisage (cm) |
+|-----------------+-----------------+-----------------------------------+-----------------+-------------------|
+| Mesclun         |               2 |                                 0 |                 |                   |
+| Carotte         |               2 |                                 0 |                 |                   |
+| Radis           |               2 |                                 0 |                 |                   |
+| Laitue          |              30 |                                 4 |                 |                   |
+| Pois mange-tout |               3 |                                 0 |                 |                   |
+| Haricot         |               3 |                                 0 |                 |                   |
+| Concombre       |              30 |                                 3 |                 |                   |
+| Chou nappa      |              30 |                                 4 |                 |                   |
+| Cerise de terre |              45 |                                 8 |                 |                   |
+| Piment          |              30 |                                 9 |                 |                   |
+| Poivron         |              30 |                                 9 |                 |                   |
+| Épinard         |              15 |                                 4 |                 |                   |
+| Chou-fleur      |              45 |                                 4 |                 |                   |
+| Phacélie        |               2 |                                 0 |             0.5 |                   |
+| Rutabaga        |               3 |                                 0 |               1 |                15 |
+| Fraisier        |              20 |                                 0 |                 |                   |
 
+* Variétés :noexport:
+:PROPERTIES:
+:ID:       b2f650a4-a264-11ed-b503-d8cb8a7c0478
+:END:
+
+#+TBLNAME: varieties
+| Plante                  | Variété                  | Nom                             | Fournisseur           | Espacement (cm) | Durée avant transplants (semaine) |
+|-------------------------+--------------------------+---------------------------------+-----------------------+-----------------+-----------------------------------|
+| Carotte                 | Scarlet Nantes           | Carotte Scarlet Nantes          | West coast seeds      |               2 |                                 0 |
+| Radis                   | French Breakfast         | Radis French Breakfast          | West coast seeds      |               2 |                                 0 |
+| Laitue                  | Buttercrunch             | Laitue Buttercrunch             | West coast seeds      |              30 |                                 4 |
+| Laitue                  | Grosse Blonde Paresseuse | Laitue Grosse Blonde Paresseuse | Jardins de l'écoumène |              30 |                                 4 |
+| Laitue                  | Romaine Rouge d'Hiver    | Laitue Romaine Rouge d'Hiver    | Jardins de l'écoumène |              30 |                                 4 |
+| Épinard                 | Bloomsdale Savoy         | Épinard Bloomsdale Savoy        | West coast seeds      |              15 |                                 4 |
+| Mesclun                 | Allstar                  | Mesclun Allstar                 | Johnny's seeds        |               2 |                                 0 |
+| Pois mange-tout         | Sugar Ann                | Pois mange-tout Sugar Ann       | Johnny's seeds        |               3 |                                 0 |
+| Pois mange-tout         | Super Sugar              | Pois mange-tout Super Sugar     | West coast seeds      |               3 |                                 0 |
+| Concombre               | H-19 Little Leaf         | Concombre H-19 Little Leaf      | Johnny's seeds        |              30 |                                 3 |
+| Chou nappa              | Wong Bok                 | Chou nappa Wong Bok             | Gaia Organics         |              30 |                                 4 |
+| Cerise de terre         |                          | Cerise de terre                 | Société des plantes   |              45 |                                 8 |
+| Piment                  | Chili                    | Piment Chili                    | Gaia Organics         |              30 |                                 9 |
+| Poivron                 | Sweet Chocolate          | Poivron Sweet Chocolate         | Société des plantes   |              30 |                                 9 |
+| Haricot                 | Provider                 | Haricot Provider                | Johnny's seeds        |               3 |                                 0 |
+| Chou-fleur              | Walcheren Winter         | Chou-fleur Walcheren Winter     | West coast seeds      |              45 |                                 4 |
+| Rutabaga                | Joan                     | Rutabaga Joan                   | Société des plantes   |               3 |                                 0 |
+| Phacélie                |                          | Phacélie                        | Jardins de l'écoumène |               2 |                                 0 |
+| Fraisier                |                          | Fraisier                        | Pépinière ancestrale  |              20 |                                 0 |
+| Échalote de Sainte-Anne |                          | Échalote de Sainte-Anne         | Jardins de l'écoumène |              15 |                                 0 |
+#+TBLFM: $3='(concat $1 " " $2) :: $5='(plant-space $1 $5) :: $6='(plant-week-before-transplant $1 $6)
 
 * Buttes :noexport:
 :PROPERTIES:
@@ -40,12 +78,15 @@
 | S6    |          5.5 |           550 |
 | S7    |            6 |           600 |
 | Kiwi  |         18.6 |          1860 |
+| VO    |        18.22 |          1822 |
+| VN    |        21.22 |          2122 |
+| FR    |          9.5 |           950 |
 #+TBLFM: $3=$2*100;%.0f
 
 
 * Org Functions :noexport:
 
-#+BEGIN_SRC emacs-lisp :session :exports none
+#+BEGIN_SRC emacs-lisp :session :exports none :cache yes
   ;;  Copyright (C) 2023 Marc-Antoine Loignon
 
   ;;  This program is free software; you can redistribute it and/or modify
@@ -66,6 +107,7 @@
 
   (defvar tables-id
     '(("plants" . "f063a506-a114-11ed-b503-d8cb8a7c0478")
+      ("varieties" . "b2f650a4-a264-11ed-b503-d8cb8a7c0478")
       ("raised-beds" . "734d5eca-a114-11ed-b503-d8cb8a7c0478"))
     "Tables reference id to make them usable in all files.")
 
@@ -75,16 +117,20 @@
 
   (defun remote-value-by-reference (&rest args)
     "Lookups table and returns remote value by given ARGS."
-    (let* ((reference (plist-get args :reference))
+    (let* ((default-value (plist-get args :default-value))
+           (reference (plist-get args :reference))
            (reference-range (remote-range (plist-get args :table-reference-column)))
            (return-range (remote-range (plist-get args :table-return-column)))
            (table-name (plist-get args :table-name))
            (table-return-column (plist-get args :table-column-return))
-           (table-id (cdr (assoc table-name tables-id))))
-      (org-lookup-first
-       reference
-       (org-table-get-remote-range table-id reference-range)
-       (org-table-get-remote-range table-id return-range))))
+           (table-id (cdr (assoc table-name tables-id)))
+           (remote-value (org-lookup-first reference
+                           (org-table-get-remote-range table-id reference-range)
+                           (org-table-get-remote-range table-id return-range))))
+      (if remote-value
+          remote-value
+        (when default-value
+          default-value))))
 
   (defun raised-bed-width (raised-bed)
     "Returns raised bed width."
@@ -101,17 +147,35 @@
           (row (string-to-number row)))
       (* (/ width space) row)))
 
-  (defun plant-space (plant)
+  (defun variety-space (plant)
     "Returns plant space between each other."
     (remote-value-by-reference
+     :reference plant
+     :table-name "varieties"
+     :table-reference-column "3"
+     :table-return-column "5"))
+
+  (defun variety-week-before-transplant (plant)
+    "Returns week before transplant."
+    (remote-value-by-reference
+     :reference plant
+     :table-name "varieties"
+     :table-reference-column "3"
+     :table-return-column "6"))
+
+  (defun plant-space (plant default-value)
+    "Returns plant space between each other."
+    (remote-value-by-reference
+     :default-value default-value
      :reference plant
      :table-name "plants"
      :table-reference-column "1"
      :table-return-column "2"))
 
-  (defun plant-week-before-transplant (plant)
+  (defun plant-week-before-transplant (plant default-value)
     "Returns week before transplant."
     (remote-value-by-reference
+     :default-value default-value
      :reference plant
      :table-name "plants"
      :table-reference-column "1"
@@ -146,6 +210,7 @@
           (setq header row))
         (when (and (listp row)
                    (not (equal header row)))
+          (setq row (funcall row-func row))
           (add-to-list 'new-content row t)))
       new-content))
 
@@ -158,40 +223,46 @@
           (when (string= subsection subsection-expected)
             (element-format-table element section row-func))))))
 
+
+  (setq sowing-tables-results nil)
+
   (defun element-sowing-tables ()
     "Returns spaced tables content."
-    (element-table "Espacement"
-     (lambda (row)
-       (add-to-list 'row (plant-week-before-transplant (nth 1 row)) t)
-       row)))
+    (when (not sowing-tables-results)
+      (setq sowing-tables-results
+            (element-table "Espacement"
+              (lambda (row)
+                (setq row (append row (list (variety-week-before-transplant (nth 1 row)))))
+                row))))
+    sowing-tables-results)
 #+END_SRC
 
-#+RESULTS:
+#+RESULTS[d82df70b8b51f663a40250c75bdd99249651f49c]:
 : element-sowing-tables
 
-#+BEGIN_SRC python :session :exports none :var content=tables :python python3.8
+#+BEGIN_SRC python :session :exports none :python python3.8 :cache yes
   def get_months_with_variations():
       """
       Gets months with its possible variations.
       """
       months_with_variations = []
       months = [
-          "Janvier",
-          "Février",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Juillet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novembre",
-          "Décembre"
+          " de janvier",
+          " de février",
+          " de mars",
+          " d'avril",
+          " de mai",
+          " de juin",
+          " de juillet",
+          " d'août",
+          " de septembre",
+          " de octobre",
+          " de novembre",
+          " de décembre"
       ]
 
       for month in months:
-         for variation in ["Début ", "Mi-", "", "Fin "]:
+         for variation in ["1ère semaine", "2e semaine", "3e semaine", "4e semaine"]:
              months_with_variations.append(variation + month)
 
       return months_with_variations
@@ -208,13 +279,18 @@
           if section.endswith(month_lowercase):
              return month
 
+      return "—"
+
   def get_sowing_date(transplant_date, week_before_transplant):
       """
       Gets months after subtract number of week.
       """
-      index = months.index(transplant_date)
-      sowing_index = index - week_before_transplant
-      return months[sowing_index]
+      try:
+          index = months.index(transplant_date)
+          sowing_index = index - week_before_transplant
+          return months[sowing_index]
+      except:
+          return "—"
 
   def get_tables_formatted(content):
       """
@@ -232,7 +308,11 @@
                   is_section_found = True
 
               if row != section and row != "hline":
-                 tables_formatted.append([ row[0], row[1], row[4], transplant_date ])
+                  try:
+                      sowing_date = get_sowing_date(transplant_date, int(row[5]))
+                  except:
+                      print(row)
+                  tables_formatted.append([ row[0], row[1], row[4], transplant_date, sowing_date ])
 
       return tables_formatted
 
@@ -267,5 +347,73 @@
 
       return sorted_tables
 
+  def get_transplanting_planning_table(content):
+      """
+      Gets transplanting planning table.
+      """
+      table = []
+      header = ["Butte", "Plant", "Quantité", "Date de transplation"]
+
+      for row in get_tables_formatted(content):
+          del row[4]
+          table.append(row)
+
+      table = sort_tables_by_date(table, 3)
+
+      table.insert(0, header)
+      table.insert(1, None)
+
+      return table
+
+  def get_sowing_planning_table(content):
+      """
+      Gets transplanting planning table.
+      """
+      table = []
+      header = ["Butte", "Plant", "Quantité", "Semis (+40%)", "Date de semis"]
+
+      for row in get_tables_formatted(content):
+          if row[3] == row[4] and row[3] != "—":
+              continue
+          row[3] = round(float(row[2]) * 1.4)
+          table.append(row)
+
+      table = sort_tables_by_date(table, 4)
+
+      table.insert(0, header)
+      table.insert(1, None)
+
+      return table
+
+  def get_seeds_buying_planning_table(content):
+      """
+      Gets seeds buying planning table.
+      """
+      plants = {}
+
+      for row in get_tables_formatted(content):
+          name = row[1]
+          quantity = int(row[2])
+          if row[3] != row[4]:
+              quantity = quantity * 1.4
+
+          if name not in plants:
+              plants[name] = 0
+
+          plants[name] += round(quantity)
+
+      table = []
+      header = ["Plant", "Quantité minimum"]
+
+      for name in plants:
+          table.append([name, plants[name]])
+
+      table.insert(0, header)
+      table.insert(1, None)
+
+      return table
+
   months = get_months_with_variations()
 #+END_SRC
+
+#+RESULTS[e13e621d763c05e9667eae56d05a4ffd2ad63f2d]:
